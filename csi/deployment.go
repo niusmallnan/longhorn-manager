@@ -20,6 +20,7 @@ const (
 var (
 	HostPathDirectoryOrCreate     = v1.HostPathDirectoryOrCreate
 	MountPropagationBidirectional = v1.MountPropagationBidirectional
+	GracePeriodZeroSecond         = int64(0)
 )
 
 type AttacherDeployment struct {

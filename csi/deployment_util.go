@@ -168,7 +168,7 @@ func cleanupStatefulSet(kubeClient *clientset.Clientset, statefulSet *appsv1beta
 		logrus.Debugf("Trying to delete the statefulset %s", statefulSet.ObjectMeta.Name)
 		propagation := metav1.DeletePropagationForeground
 		if err = kubeClient.AppsV1beta1().StatefulSets(statefulSet.ObjectMeta.Namespace).Delete(statefulSet.ObjectMeta.Name,
-			&metav1.DeleteOptions{PropagationPolicy: &propagation}); err != nil {
+			&metav1.DeleteOptions{PropagationPolicy: &propagation, GracePeriodSeconds: &GracePeriodZeroSecond}); err != nil {
 			return err
 		}
 		logrus.Debugf("Deleted the statefulset %s", statefulSet.ObjectMeta.Name)
@@ -208,7 +208,7 @@ func cleanupDaemonSet(kubeClient *clientset.Clientset, daemonSet *appsv1beta2.Da
 		logrus.Debugf("Trying to delete the daemonset %s", daemonSet.ObjectMeta.Name)
 		propagation := metav1.DeletePropagationForeground
 		if err = kubeClient.AppsV1beta2().DaemonSets(daemonSet.ObjectMeta.Namespace).Delete(daemonSet.ObjectMeta.Name,
-			&metav1.DeleteOptions{PropagationPolicy: &propagation}); err != nil {
+			&metav1.DeleteOptions{PropagationPolicy: &propagation, GracePeriodSeconds: &GracePeriodZeroSecond}); err != nil {
 			return err
 		}
 		logrus.Debugf("Deleted the daemonset %s", daemonSet.ObjectMeta.Name)
